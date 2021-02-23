@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-
+#include "blinky.h"
 int global;
 
 extern long __bss_start;
@@ -16,8 +16,14 @@ void clear_bss(){
 	}
 }
 
+
 void kernel_main() {
 	clear_bss();
+	led_init();
     while(1){
+	led_on();
+	delay(10);//arbitrary number for delay
+	led_off();
+	delay(10);
     }
 }
