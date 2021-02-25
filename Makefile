@@ -18,6 +18,8 @@ OBJS = \
 	serial.o \
 	special.o \
 	blinky.o \
+	serial.o \
+	rprintf.o \
 
 
 
