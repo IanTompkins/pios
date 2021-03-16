@@ -1,8 +1,9 @@
 
 //#include <stdio.h> //commented out for HW5 to make properly
-#include "blinky.h"
+#include "list.h"
 #include "rprintf.h"
 #include "serial.h"
+#include "page.h"
 int global;
 
 #define NULL (void*)0; //added from Neil on Tuesday
@@ -10,9 +11,9 @@ int *mu_io_reg = 0x3F215040;
 
 extern long __bss_start;
 extern long __bss_end;
+extern struct ppage* free_list;
 
-
-void clear_bss(){
+/*void clear_bss(){
 	
 	char * bssStart = &__bss_start;
 	char * bssEnd = &__bss_end;
@@ -20,16 +21,18 @@ void clear_bss(){
 		(&__bss_start)[i] = 0;
 	}
 }
-
+*/
 
 void kernel_main() {
-	clear_bss();
+	init_pfa_list();
+	//clear_bss();
 	//led_init();//commented out for HW5
-	int *mu_io_reg = 0x7E215040;
-	*mu_io_reg = 'I'; //attempt to print IAN ????
-	*mu_io_reg = 'A';
-	*mu_io_reg = 'N';
-	esp_printf(putc, "The memory location is %x", kernel_main); //added for serial port hw tuesday class
+	//mmu_on();
+	//int *mu_io_reg = 0x7E215040;
+	//*mu_io_reg = 'I'; //attempt to print IAN ????
+	//*mu_io_reg = 'A';
+	//*mu_io_reg = 'N';
+	//esp_printf(putc, "The memory location is %x", kernel_main); //added for serial port hw tuesday class
     while(1){
 	//led_on(); //all commented out for HW5
 	//delay(10);//arbitrary number for delay

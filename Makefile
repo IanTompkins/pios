@@ -16,11 +16,10 @@ OBJS = \
 	boot.o \
 	kernel_main.o \
 	serial.o \
-	special.o \
-	blinky.o \
-	serial.o \
+	mmusetup.o \
+	page.o \
+	list.o \
 	rprintf.o \
-
 
 
 OBJ = $(patsubst %,$(ODIR)/%,$(OBJS))
